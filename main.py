@@ -8,6 +8,7 @@ import networkx as nx
 from resources.constant import final_edges_index_csv, final_distances_csv, final_datapoints_csv, \
     adjacency_matrix_csv_file, iris_dataset_graph_img, iris_dataset
 from utils import calculateEuclideanDistance, plotGraph, writeCsvFile
+from ge import Node2Vec
 
 
 def datasetloading():
@@ -78,6 +79,12 @@ def generateGraph(nodes, edges):
     print(adj_matrix)
     adj_matrix.to_csv(adjacency_matrix_csv_file, encoding='utf-8')
     return G
+
+def featureExtraction(G):
+    model = Node2Vec(G, walk_length=10, num_walks=80,
+                     p=0.25, q=4, workers=1, use_rejection_sampling=0)
+    model.train(window_size=5, iter=3)
+    embeddings = model.get_embeddings()
 
 
 # Press the green button in the gutter to run the script.
