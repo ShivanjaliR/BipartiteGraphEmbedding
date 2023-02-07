@@ -79,7 +79,7 @@ def generateEdges(dataset, labels):
 
 def generateGraph(nodes, edges, labels):
     G = nx.Graph()
-    G.add_nodes_from([(nodes[i], {"color": "Red"}) if labels[i] == 0 else (nodes[i], {"color": "Green"}) if labels[i] == 1 else (nodes[i], {"color": "Blue"}) for i in range(len(list(nodes)))])
+    G.add_nodes_from([(nodes[i], {"color": "Red"}) if labels[i] == 0 else (nodes[i], {"color": "Green"}) if labels[i] == 1 else (nodes[i], {"color": "Yellow"}) for i in range(len(list(nodes)))])
     G.add_edges_from(edges)
     # set nodes attributes
     A = nx.adjacency_matrix(G)

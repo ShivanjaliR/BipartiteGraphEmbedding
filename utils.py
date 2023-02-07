@@ -68,8 +68,9 @@ def plotGraph(G, graphName):
     # pos = nx.nx_agraph.graphviz_layout(G)
     pos = nx.spring_layout(G)
 
+    node_colors = [node[1]['color'] for node in G.nodes(data=True)]
     # draw nodes and edges
-    nx.draw(G, pos=pos, with_labels=True)
+    nx.draw(G, pos=pos, with_labels=True, node_color=node_colors)
 
     # plot the title (if any)
     plt.title('Iris Dataset Graph')
